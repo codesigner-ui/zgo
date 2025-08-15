@@ -7,3 +7,11 @@ support ide
 - [ ] Xcode
 - [ ] AndroidStudio
 - [ ] CMake
+
+toolchain
+
+zgo new/generate/build/publish/clean
+
+
+# Dependencies
+- Toml: [Tommy](https://github.com/dezhidki/Tommy)
