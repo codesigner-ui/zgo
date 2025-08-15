@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <Deterministic>true</Deterministic>
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+        <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)\Intermediate\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <BaseOutputPath>$(MSBuildThisFileDirectory)\Intermediate\bin\$(MSBuildProjectName)</BaseOutputPath>
+        <IncludeSourceRevisionInInformationalVersion>true</IncludeSourceRevisionInInformationalVersion>
+        <EmbedUntrackedSources>false</EmbedUntrackedSources>
+    </PropertyGroup>
+</Project>
