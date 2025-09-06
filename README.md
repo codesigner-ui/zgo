@@ -9,8 +9,13 @@ support ide
 - [ ] CMake
 
 toolchain
+- [ ] new: create init.zgo project file
+- [ ] generate: create solution project file and setup environment
+- [ ] build: build project file
+- [ ] publish: make publish
+- [ ] clean: clean project files
+- [ ] run: build and execute bin
 
-zgo new/generate/build/publish/clean
 
 
 # Dependencies
