@@ -10,7 +10,8 @@ support ide
 
 toolchain
 - [ ] new: create init.zgo project file
-- [ ] generate: create solution project file and setup environment
+- [ ] set: set toolchain and environment
+- [ ] generate: create solution project file
 - [ ] build: build project file
 - [ ] publish: make publish
 - [ ] clean: clean project files
