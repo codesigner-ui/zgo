@@ -8,9 +8,13 @@ support ide
 - [ ] AndroidStudio
 - [ ] CMake
 
+support language
+- [ ] c#
+- [ ] c/c++
+
 toolchain
 - [ ] new: create init.zgo project file
-- [ ] set: set toolchain and environment
+- [ ] setup: set toolchain and environment
 - [ ] generate: create solution project file
 - [ ] build: build project file
 - [ ] publish: make publish
