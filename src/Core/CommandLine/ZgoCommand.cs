@@ -3,7 +3,7 @@
 using System.CommandLine;
 using System.Reflection.Metadata;
 
-public class ZgoCommand : Command
+public class ZgoCommand : Command, IZgoCommand
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
     protected class OptionAttribute : ArgumentAttribute
@@ -19,6 +19,7 @@ public class ZgoCommand : Command
     {
         public ArgumentArity Arity { get; set; }
         public string[] Alias { get; set; }
+        public string[] AllowValues { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
@@ -26,15 +27,20 @@ public class ZgoCommand : Command
 
         public string HelpName { get; set; }
 
-        public string OnAction { get; set; }
+    }
+    public ZgoCommand(string name, string description="") : base(name, description)
+    {
+        ZgoCommandMaker.Make(this);
+        this.SetAction(this.OnAction);
+    }
+
+    protected virtual void OnAction(ParseResult result)
+    {
 
     }
-    public ZgoCommand(string name) : base(name)
-    {
-        
-    }
+
     //
-    protected virtual void OnAction()
+    protected virtual void OnExecute()
     {
 
     }
