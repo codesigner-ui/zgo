@@ -1,8 +1,10 @@
 # zgo
 project generator inspected by UnrealEngine UnrealHeadTool and rust Cargo
 
-support ide
+support ide 
 - [ ] VisualStudio
+  - [ ] c#
+  - [ ] c/c++
 - [ ] VisualStudioCode
 - [ ] Xcode
 - [ ] AndroidStudio

@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Core/zgo.core.csproj" />
+    <ProjectReference Include="../ProjectFiles/zgo.project.csproj" />
+    <ProjectReference Include="../Toolchain/zgo.toolchain.csproj" />
+  </ItemGroup>
+
 </Project>
