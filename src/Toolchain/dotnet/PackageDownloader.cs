@@ -1,6 +1,1 @@
-﻿namespace zgo.toolchain;
-
-public class Class1
-{
-
-}
+﻿namespace 
