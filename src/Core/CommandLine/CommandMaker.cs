@@ -42,6 +42,25 @@ internal static class ZgoCommandMaker
         }
     }
 
+    private static void SetAllowValues(this Option option, string[] allowValues)
+    {
+        Type optionType = option.GetType();
+        MethodInfo methodInfo = optionType.GetMethod("AcceptOnlyFromAmong");
+        if (methodInfo != null)
+        {
+            methodInfo.Invoke(option, allowValues);
+        }
+    }
+
+    private static void SetAllowValues(this Argument argument, string[] allowValues)
+    {
+        Type argumentType = typeof(ArgumentValidation);
+        MethodInfo methodInfo = argumentType.GetMethod("AcceptOnlyFromAmong").MakeGenericMethod(argument.ValueType);
+        if (methodInfo != null)
+        {
+            methodInfo.Invoke(null, new object[] { argument, allowValues });
+        }
+    }
     private static void SetOption(Option option, ZgoCommand.OptionAttribute optionAttr)
     {
         option.Description = optionAttr.Description;
@@ -51,6 +70,7 @@ internal static class ZgoCommandMaker
         option.AllowMultipleArgumentsPerToken = optionAttr.AllowMultipleArgumentsPerToken;
         option.Hidden = optionAttr.Hidden;
         option.Required = optionAttr.Required;
+        option.SetAllowValues(optionAttr.AllowValues);
     }
 
     private static void SetArgument(Argument argument, ZgoCommand.ArgumentAttribute argumentAttr)
@@ -58,6 +78,7 @@ internal static class ZgoCommandMaker
         argument.Arity = argumentAttr.Arity;
         argument.Description = argumentAttr.Description;
         argument.HelpName = argumentAttr.HelpName;
+        argument.SetAllowValues(argumentAttr.AllowValues);
     }
 
 
