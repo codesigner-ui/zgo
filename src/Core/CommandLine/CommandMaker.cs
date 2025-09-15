@@ -82,19 +82,5 @@ internal static class ZgoCommandMaker
     }
 
 
-    private static void MakeCommandHelper(Type commandType, IZgoCommand zgoCommand)
-    {
-
-    }
-
-    private static void MakeArgument(Command command, MemberInfo memberInfo)
-    {
-
-    }
-
-    private static void MakeOption(Command command, MemberInfo memberInfo)
-    {
-
-    }
 
 }

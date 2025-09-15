@@ -11,5 +11,11 @@ public class ZgoProgram : RootCommand, IZgoCommand
     {
 
     }
-    
+
+
+    public void Execute(string[] arguments)
+    {
+        ParseResult result = this.Parse(arguments, this.ParserConfiguration);
+        result.Invoke(this.InvocationConfiguration);
+    }
 }

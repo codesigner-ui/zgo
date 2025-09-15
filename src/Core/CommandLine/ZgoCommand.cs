@@ -35,7 +35,7 @@ public class ZgoCommand : Command, IZgoCommand
 
     protected virtual void OnAction(ParseResult result)
     {
-
+        result.InvocationConfiguration.Output.Write("OnAction", this.Name, this.Description);
     }
 
     //
@@ -44,14 +44,4 @@ public class ZgoCommand : Command, IZgoCommand
 
     }
     
-}
-
-class ZgoCTest : ZgoCommand
-{
-    [Option()]
-    public int a;
-    public ZgoCTest() : base("")
-    {
-
-    }
 }
