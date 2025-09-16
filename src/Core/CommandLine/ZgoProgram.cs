@@ -12,6 +12,7 @@ public class ZgoProgram : RootCommand, IZgoCommand
 
     }
 
+    public event Action<ParseResult> OnParser;
 
     public void Execute(string[] arguments)
     {

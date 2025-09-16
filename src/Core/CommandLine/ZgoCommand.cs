@@ -7,11 +7,14 @@ public class ZgoCommand : Command, IZgoCommand
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
     public class OptionAttribute : ArgumentAttribute
     {
+        public OptionAttribute(string name) : base(name)
+        {
+        }
 
         public bool Required { get; set; }
         public bool Recursive { get; set; }
 
-        public string[] Aliases { get; set; }
+        public string[] Aliases { get; set; } = new string[0];
         public bool Hidden { get; set; }
         public bool AllowMultipleArgumentsPerToken { get; set; }
     }
@@ -26,6 +29,11 @@ public class ZgoCommand : Command, IZgoCommand
 
         public string HelpName { get; set; }
 
+        public ArgumentAttribute(string name)
+        {
+            this.Name = name;
+        }
+
     }
     public ZgoCommand(string name, string description="") : base(name, description)
     {
@@ -33,11 +41,19 @@ public class ZgoCommand : Command, IZgoCommand
         this.SetAction(this.OnAction);
     }
 
+    public event Action<ParseResult> OnParser;
+
     protected virtual void OnAction(ParseResult result)
     {
-        result.InvocationConfiguration.Output.Write("OnAction", this.Name, this.Description);
+        this.OnParser?.Invoke(result);
+        this.PostParse();
+        this.OnExecute();
     }
 
+    protected virtual void PostParse()
+    {
+
+    }
     //
     protected virtual void OnExecute()
     {

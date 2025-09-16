@@ -5,6 +5,6 @@ public class DotnetCommand : ZgoCommand
 {
     public DotnetCommand() : base("dotnet", "dotnet toolchain")
     {
-
+        this.Add(new PackageDownloadCommand());
     }
 }
