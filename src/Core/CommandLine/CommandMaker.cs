@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace Zgo.Core;
 
+
 internal interface IZgoCommand
 {
     event Action<ParseResult> Parsers;

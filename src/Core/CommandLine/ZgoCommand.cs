@@ -2,6 +2,7 @@
 
 using System.CommandLine;
 using System.Formats.Asn1;
+using System.Linq;
 using System.Reflection;
 
 public class ZgoCommand : Command, IZgoCommand
@@ -51,6 +52,19 @@ public class ZgoCommand : Command, IZgoCommand
 
     public event Action<ParseResult> Parsers;
 
+    public ZgoProgram RootProgram => Parents.First() as ZgoProgram;
+    public ZgoCommand Parent => this.Parents.Last() as ZgoCommand;
+    public T GetParent<T>() where T : ZgoCommand
+    {
+        foreach (var p in this.Parents)
+        {
+            if (p is T t)
+            {
+                return t;
+            }
+        }
+        return null;
+    }
     protected void OnParse(ParseResult result)
     {
         this.Parsers?.Invoke(result);
