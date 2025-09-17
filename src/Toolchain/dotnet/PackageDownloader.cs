@@ -12,7 +12,7 @@ internal class PackageDownloader
     public static async Task DownloadAndExtractPackageAsync(string packageId, string version, string targetDirectory)
     {
         // 1. 创建 NuGet 资源库（以官方源为例）
-        var logger = NullLogger.Instance;
+        ILogger logger = NullLogger.Instance;
         var cache = new SourceCacheContext();
         var repository = Repository.Factory.GetCoreV3("https://api.nuget.org/v3/index.json");
 

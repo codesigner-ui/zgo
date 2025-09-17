@@ -3,6 +3,7 @@ using System.CommandLine;
 
 namespace Zgo.Core;
 
+// todo logger / path handler
 public class ZgoProgram : RootCommand, IZgoCommand
 {
     public ParserConfiguration ParserConfiguration { get; set; } = new ParserConfiguration();
