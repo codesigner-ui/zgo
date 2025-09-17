@@ -1,6 +1,8 @@
 ﻿namespace Zgo.Core;
 
 using System.CommandLine;
+using System.Formats.Asn1;
+using System.Reflection;
 
 public class ZgoCommand : Command, IZgoCommand
 {
@@ -35,19 +37,32 @@ public class ZgoCommand : Command, IZgoCommand
         }
 
     }
-    public ZgoCommand(string name, string description="") : base(name, description)
+    public ZgoCommand(string name, string description = "") : base(name, description)
     {
         ZgoCommandMaker.Make(this);
-        this.SetAction(this.OnAction);
+        MethodInfo methodInfo = this.GetType().GetMethod("OnExecute", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        bool executeAsync = methodInfo.DeclaringType != this.GetType();
+        if (executeAsync)
+            this.SetAction(this.OnActionAsync);
+        else
+            this.SetAction(this.OnAction);
     }
 
     public event Action<ParseResult> OnParser;
 
-    protected virtual void OnAction(ParseResult result)
+    private void OnAction(ParseResult result)
     {
         this.OnParser?.Invoke(result);
         this.PostParse();
         this.OnExecute();
+    }
+
+    private async Task OnActionAsync(ParseResult result)
+    {
+        this.OnParser?.Invoke(result);
+        this.PostParse();
+        await this.OnExecuteAsync();
     }
 
     protected virtual void PostParse()
@@ -57,7 +72,10 @@ public class ZgoCommand : Command, IZgoCommand
     //
     protected virtual void OnExecute()
     {
+    }
 
+    protected virtual async Task OnExecuteAsync()
+    {
     }
     
 }

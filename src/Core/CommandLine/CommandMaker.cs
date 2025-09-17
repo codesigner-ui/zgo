@@ -11,16 +11,27 @@ internal interface IZgoCommand
 internal static class ZgoCommandMaker
 {
 
+    private static T GetTValueForOption<T>(this ParseResult result, Option<T> option)
+    {
+        return result.GetValue(option);
+    }
+
+    private static T GetTValueForArgument<T>(this ParseResult result, Argument<T> argument)
+    {
+        return result.GetValue(argument);
+    }
     private static object GetValueForOption(this ParseResult result, Option option)
     {
-        MethodInfo getValue = result.GetType().GetMethod("GetValue", BindingFlags.Instance | BindingFlags.Public, new Type[] { option.GetType() });
-        return getValue.Invoke(result, new object[] { option });
+        MethodInfo methodInfo = typeof(ZgoCommandMaker).GetMethod("GetTValueForOption", BindingFlags.NonPublic | BindingFlags.Static);
+        MethodInfo getValueMethod = methodInfo.MakeGenericMethod(option.ValueType);
+        return getValueMethod.Invoke(null, new object[] { result, option });
     }
 
     private static object GetValueForArgument(this ParseResult result, Argument argument)
     {
-        MethodInfo getValue = result.GetType().GetMethod("GetValue", BindingFlags.Instance | BindingFlags.Public, new Type[] { argument.GetType() });
-        return getValue.Invoke(result, new object[] { argument });
+       MethodInfo methodInfo = typeof(ZgoCommandMaker).GetMethod("GetTValueForArgument", BindingFlags.NonPublic | BindingFlags.Static);
+        MethodInfo getValueMethod = methodInfo.MakeGenericMethod(argument.ValueType);
+        return getValueMethod.Invoke(null, new object[] { result, argument });
     }
 
     private static Func<ArgumentResult, T> GetFieldValueFactory<T>(this FieldInfo fieldInfo, IZgoCommand command)
