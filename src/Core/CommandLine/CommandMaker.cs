@@ -6,7 +6,7 @@ namespace Zgo.Core;
 
 internal interface IZgoCommand
 {
-    event Action<ParseResult> OnParser;
+    event Action<ParseResult> Parsers;
 }
 internal static class ZgoCommandMaker
 {
@@ -87,7 +87,7 @@ internal static class ZgoCommandMaker
                 SetOption(option, optionAttr);
                 command.Options.Add(option);
                 option.SetDefaultValueFactoryForOption(command, fieldInfo);
-                command.OnParser += (result) =>
+                command.Parsers += (result) =>
                 {
                     object value = result.GetValueForOption(option);
                     fieldInfo.SetValue(command, value);
@@ -100,7 +100,7 @@ internal static class ZgoCommandMaker
                 SetArgument(argument, arugmentAttr);
                 command.Arguments.Add(argument);
                 argument.SetDefaultValueFactoryForArgument(command, fieldInfo);
-                command.OnParser += (result) =>
+                command.Parsers += (result) =>
                 {
                     object value = result.GetValueForArgument(argument);
                     fieldInfo.SetValue(command, value);

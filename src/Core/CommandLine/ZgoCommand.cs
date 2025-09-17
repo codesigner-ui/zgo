@@ -49,25 +49,27 @@ public class ZgoCommand : Command, IZgoCommand
             this.SetAction(this.OnAction);
     }
 
-    public event Action<ParseResult> OnParser;
+    public event Action<ParseResult> Parsers;
 
-    private void OnAction(ParseResult result)
+    protected void OnParse(ParseResult result)
     {
-        this.OnParser?.Invoke(result);
+        this.Parsers?.Invoke(result);
         this.PostParse();
+    }
+    protected void OnAction(ParseResult result)
+    {
+        OnParse(result);
         this.OnExecute();
     }
 
-    private async Task OnActionAsync(ParseResult result)
+    protected async Task OnActionAsync(ParseResult result)
     {
-        this.OnParser?.Invoke(result);
-        this.PostParse();
+        OnParse(result);
         await this.OnExecuteAsync();
     }
 
     protected virtual void PostParse()
     {
-
     }
     //
     protected virtual void OnExecute()
