@@ -66,7 +66,7 @@ internal class PackageDownloadCommand : ZgoCommand
     private string _version;
     [Option("--output", Description = "package save path", Required = true)]
     private string _outputPath;
-    public PackageDownloadCommand() : base("nuget")
+    public PackageDownloadCommand() : base("nuget", "download package from nuget.org")
     { }
 
     protected override async Task OnExecuteAsync()
