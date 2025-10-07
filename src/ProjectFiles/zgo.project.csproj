@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Core/zgo.core.csproj" />
+    <ProjectReference Include="../Toolchain/zgo.toolchain.csproj" />
   </ItemGroup>
 
 </Project>
