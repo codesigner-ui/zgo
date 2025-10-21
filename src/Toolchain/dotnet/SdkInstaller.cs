@@ -14,14 +14,11 @@ internal class DotnetInstallCommand : ZgoCommand
     [Option("--sdk-version", Description = "sdk version")]
     private string _sdkVersion;
 
-    [Option("--runtime-version", Description = "runtime version")]
-    private string _runtimeVersion;
+    [Option("--runtime-version", Description = "runtime version, include rid, like: win-x64.9.0.9")]
+    private List<string> _runtimeVersions;
 
-    [Option("--runtime-rid", Description = "runtime identifier")]
 
-    private List<DotnetRID> _runtimeRIDs;
-
-    [Option("--install-workload", Description = "install target workload")]
+    [Option("--install-workload", Description = "install target workload for runtime rid build")]
     private bool _installWorkload;
     public DotnetInstallCommand() : base("install", "install sdk, runtime and workload")
     {
@@ -38,6 +35,7 @@ internal class DotnetInstaller
     {
 
     }
+    
     public static void InstallSdk(string version, string outputDir)
     {
 
