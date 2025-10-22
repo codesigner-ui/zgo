@@ -6,7 +6,7 @@ public class MainProgram : ZgoProgram
 {
     public MainProgram() : base("zgo project toolchain")
     {
-        this.Add(new ProjectCommand());
+        this.Add(new ProjectProgram());
         this.Add(new DotnetCommand());
         this.Add(new CMakeCommand());
     }

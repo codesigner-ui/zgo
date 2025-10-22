@@ -15,13 +15,19 @@ support language
 - [ ] c/c++
 
 toolchain
-- [ ] new: create init.zgo project file
-- [ ] setup: set toolchain and environment
-- [ ] generate: create solution project file
-- [ ] build: build project file
-- [ ] publish: make publish
-- [ ] clean: clean project files
-- [ ] run: build and execute bin
+- [ ] project
+  - [ ] new: create init.zgo project file
+  - [ ] setup: set toolchain and environment
+  - [ ] generate: create solution project file
+  - [ ] build: build project file
+  - [ ] publish: make publish
+  - [ ] clean: clean project files
+  - [ ] run: build and execute bin
+- [ ] dotnet
+  - [ ] install: install sdk, app runtime and workload
+  - [ ] nuget: nuget package download
+  - [ ] exec: exec command use download sdk
+- [ ] cmake
 
 
 
