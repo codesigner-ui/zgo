@@ -44,6 +44,7 @@ internal class PackageDownloader
                 foreach (var entry in archive.Entries)
                 {
                     var entryTargetPath = Path.Combine(targetDirectory, entry.FullName);
+                    Console.WriteLine($"{entryTargetPath}");
                     var entryTargetDir = Path.GetDirectoryName(entryTargetPath);
                     if(!Directory.Exists(entryTargetDir))
                         Directory.CreateDirectory(entryTargetDir);
@@ -58,7 +59,7 @@ internal class PackageDownloader
     }
 }
 
-internal class PackageDownloadCommand : ZgoCommand
+internal class DotnetNugetCommand : ZgoCommand
 {
     [Option("--id", Description = "package id", Required = true)]
     private string _id = string.Empty;
@@ -66,7 +67,7 @@ internal class PackageDownloadCommand : ZgoCommand
     private string _version;
     [Option("--output", Description = "package save path", Required = true)]
     private string _outputPath;
-    public PackageDownloadCommand() : base("nuget", "download package from nuget.org")
+    public DotnetNugetCommand() : base("nuget", "download package from nuget.org")
     { }
 
     protected override async Task OnExecuteAsync()
