@@ -29,6 +29,9 @@ toolchain
   - [ ] exec: exec command use download sdk
 - [ ] cmake
 
+cross app
+- [ ] Xcode
+- [ ] Android
 
 
 # Dependencies
