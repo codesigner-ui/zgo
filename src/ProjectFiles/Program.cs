@@ -16,6 +16,13 @@ internal class ProjectNewCommand : ZgoCommand
     }
 }
 
+internal class ProjectSetupCommand : ZgoCommand
+{
+    public ProjectSetupCommand() : base("setup", "setup project toolchain")
+    {
+    }
+}
+
 
 public class ProjectProgram : ZgoCommand
 {
@@ -23,5 +30,6 @@ public class ProjectProgram : ZgoCommand
     {
         this.Add(new ProjectNewCommand());
         this.Add(new ProjectGenerateCommand());
+        this.Add(new ProjectSetupCommand());
     }
 }

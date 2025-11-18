@@ -16,7 +16,7 @@ support language
 
 toolchain
 - [ ] project
-  - [ ] new: create init.zgo project file
+  - [ ] new: create project.zgo project file
   - [ ] setup: set toolchain and environment
   - [ ] generate: create solution project file
   - [ ] build: build project file
