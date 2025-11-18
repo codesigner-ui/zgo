@@ -49,6 +49,7 @@ public class ZgoCommand : Command, IZgoCommand
         MethodInfo executeAsyncOverride = this.GetType().GetMethod("OnExecuteAsync", BindingFlags.Instance | BindingFlags.NonPublic);
 
         bool bOnExecuteAsync = executeAsyncOverride.DeclaringType == this.GetType();
+        // can't add default action for help
         if (bOnExecuteAsync)
             this.SetAction(this.OnActionAsync);
         else if (bOnExecute)
