@@ -1,6 +1,7 @@
 ﻿namespace Zgo.Core;
 
 using System.CommandLine;
+using System.CommandLine.Help;
 using System.Formats.Asn1;
 using System.Linq;
 using System.Reflection;
@@ -41,12 +42,16 @@ public class ZgoCommand : Command, IZgoCommand
     public ZgoCommand(string name, string description = "") : base(name, description)
     {
         ZgoCommandMaker.Make(this);
-        MethodInfo methodInfo = this.GetType().GetMethod("OnExecute", BindingFlags.Instance | BindingFlags.NonPublic);
+        MethodInfo executeOverride = this.GetType().GetMethod("OnExecute", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        bool executeAsync = methodInfo.DeclaringType != this.GetType();
-        if (executeAsync)
+        bool bOnExecute = executeOverride.DeclaringType == this.GetType();
+
+        MethodInfo executeAsyncOverride = this.GetType().GetMethod("OnExecuteAsync", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        bool bOnExecuteAsync = executeAsyncOverride.DeclaringType == this.GetType();
+        if (bOnExecuteAsync)
             this.SetAction(this.OnActionAsync);
-        else
+        else if (bOnExecute)
             this.SetAction(this.OnAction);
     }
 
