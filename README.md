@@ -1,5 +1,5 @@
 # zgo
-project generator inspected by UnrealEngine UnrealHeadTool and rust Cargo
+project generator inspected by UnrealEngine UnrealHeadTool/UnrealBuildTool, rust Cargo and dotnet CLI.
 
 support ide 
 - [ ] VisualStudio
@@ -26,12 +26,14 @@ toolchain
 - [ ] dotnet
   - [ ] install: install sdk, app runtime and workload
   - [ ] nuget: nuget package download
-  - [ ] exec: exec command use download sdk
+  - [ ] exec: exec command use downloaded dotnet sdk
 - [ ] cmake
+  - [ ] install
 
 cross app
-- [ ] Xcode
-- [ ] Android
+- [ ] rust + c#
+- [ ] c/c++ + c#
+
 
 
 # Dependencies
