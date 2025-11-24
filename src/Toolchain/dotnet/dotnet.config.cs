@@ -1,6 +1,7 @@
 namespace Zgo.Toolchain;
 
-public class DotnetToml
+// don't dependency toml xml directly.
+public class DotnetConfig
 {
     public string GetDotnetCLI()
     {
@@ -8,12 +9,12 @@ public class DotnetToml
     }
 }
 
-public class SolutionToml
+public class SolutionConfig
 {
 
 }
 
-public class ProjectToml
+public class ProjectConfig
 {
 
 }

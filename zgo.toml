@@ -1,3 +1,29 @@
 [dotnet]
 sdk = "10.0.100"
 runtime = "10.0.0"
+
+# dotn‘t support define multiple solution in one toml
+[sln]
+name = "dotnet"
+
+# dotnet.projects equals csproj
+[[csprojs]]
+name = ""
+include = ""
+links = [
+
+]
+
+[[vcprojs]]
+name = ""
+include = ""
+links = [
+
+]
+
+[cmake]
+version = "xxx"
+
+[[cmake.lib]]
+
+[cmake.bin]
